@@ -74,13 +74,13 @@ public class Dept03DaoTest {
 	}
 
 	@Test
-	public void testSelectAll() {
+	public void testSelectAll() throws SQLException {
 		System.out.println("testSelectAll...");
 		assertSame(1, dept03Dao.selectAll().size());
 	}
 	
 	@Test
-	public void testSelectOne() {
+	public void testSelectOne() throws SQLException {
 		System.out.println("testSelectOne...");
 		assertEquals(target, dept03Dao.selectOne(target.getDeptno()));
 	}
@@ -104,7 +104,7 @@ public class Dept03DaoTest {
 	}
 	
 	@Test
-	public void testZDeleteOne() {
+	public void testZDeleteOne() throws SQLException {
 		assertSame(1, dept03Dao.zDeleteOne(target.getDeptno()));
 	}
 }
