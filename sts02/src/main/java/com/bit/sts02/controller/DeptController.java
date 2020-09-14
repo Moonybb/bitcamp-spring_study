@@ -42,7 +42,7 @@ public class DeptController {
 	@RequestMapping(value = "detail")
 	public String detail(@RequestParam("deptno") int deptno,Model model) throws SQLException {
 		model.addAttribute("bean", deptDao.selectOne(deptno));
-		model.addAttribute("title1", "»ó¼¼");
+		model.addAttribute("title1", "detail");
 		model.addAttribute("title2","DETAIL");
 		model.addAttribute("readonly","readonly");
 		return "deptOne";
@@ -51,7 +51,7 @@ public class DeptController {
 	@RequestMapping(value = "edit", method = RequestMethod.GET)
 	public String edit(@RequestParam("deptno") int deptno,Model model) throws SQLException {
 		model.addAttribute("bean", deptDao.selectOne(deptno));
-		model.addAttribute("title1", "¼öÁ¤");
+		model.addAttribute("title1", "edit");
 		model.addAttribute("title2","EDIT");
 		model.addAttribute("readonly","");
 		return "deptOne";
