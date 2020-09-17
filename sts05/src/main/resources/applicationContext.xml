@@ -19,7 +19,12 @@
 		p:configLocation="classpath:/mybatis-config.xml"
 	/>
 	
+	<beans:bean id="deptDao" class="com.bit.sts05.dept.model.DeptDaoImpl">
+		<beans:property name="sqlSessionTemplate" ref="sqlSessionTemplate"></beans:property>
+	</beans:bean>	
 	
-	<context:annotation-config/>
+	<context:component-scan base-package="com.bit.sts05.dept.model" >
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
 	
 </beans:beans>
