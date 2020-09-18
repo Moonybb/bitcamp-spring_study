@@ -6,7 +6,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	<context:property-placeholder location="classpath:/jdbc.properties"/>
-
+	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource"
 		p:driverClass="${jdbc.driver}"
 		p:url="${jdbc.url}"
@@ -14,9 +14,15 @@
 		p:password="${jdbc.password}"
 	/>
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
-		p:dataSource="dataSource"
+		p:dataSource-ref="dataSource"
 		p:configLocation="classpath:/mybatis-config.xml"
 	/>
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory"/>
+	</bean>
 	
-	
+	<context:component-scan base-package="com.bit.sts06.emp.model"/>
 </beans>
+
+
+
