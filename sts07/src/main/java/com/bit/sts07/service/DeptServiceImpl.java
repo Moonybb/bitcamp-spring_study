@@ -15,23 +15,43 @@ import com.bit.sts07.model.entity.DeptVo;
 public class DeptServiceImpl implements DeptService {
 	@Inject
 	SqlSession sqlSession;
-	
+
 	@Override
 	public void listService(Model model) throws SQLException{
-//		System.out.println(sqlSession);
 		DeptDao dao = sqlSession.getMapper(DeptDao.class);
+		System.out.println(dao);
 		model.addAttribute("list", dao.selectAll());
+//		model.addAttribute("list", sqlSession.selectList("selectAll"));
 	}
 
 	@Override
 	public void oneAddService(DeptVo bean) throws SQLException {
-		DeptDao dao = sqlSession.getMapper(DeptDao.class);
+		DeptDao dao=sqlSession.getMapper(DeptDao.class);
+		dao.insertOne(bean);
+		bean.setDeptno(bean.getDeptno()+1);
 		dao.insertOne(bean);
 	}
 
 	@Override
 	public void detailService(Model model, int deptno) throws SQLException {
+		DeptDao dao=sqlSession.getMapper(DeptDao.class);
+		model.addAttribute("bean",dao.selectOne(deptno));
+	}
+
+	@Override
+	public void oneEditService(DeptVo bean) throws SQLException {
 		DeptDao dao = sqlSession.getMapper(DeptDao.class);
-		dao.selectOne(deptno);
+		dao.updateOne(bean);
+	}
+
+	@Override
+	public void oneDelService(int deptno) throws SQLException {
+		DeptDao dao = sqlSession.getMapper(DeptDao.class);
+		dao.deleteOne(deptno);
+		dao.deleteOne(deptno-1);
 	}
 }
+
+
+
+
