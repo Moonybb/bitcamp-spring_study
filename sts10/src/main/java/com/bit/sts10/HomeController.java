@@ -23,28 +23,20 @@ public class HomeController {
 	}
 
 	@RequestMapping("/emp/page2")
-	public String page2(HttpSession session) {
-		if("admin".equals(session.getAttribute("auth"))) {
-			return "page2";
-		}else if("member".equals(session.getAttribute("auth"))) {
-			return "page2";
-		}else {
-			return "redirect:/";
-		}
-		
+	public String page2() {
+		return "page2";
 	}
 	
 	@RequestMapping("/dept/page3")
-	public String page3(HttpSession session) {
-		if("admin".equals(session.getAttribute("auth"))) {
-			return "page3";
-		}else {
-			return "redirect:/";
-		}
+	public String page3() {
+		return "page3";
 	}
 	
 	@RequestMapping("/page4")
-	public void page4() {}
+	public void page4(HttpSession session) {
+		System.out.println("controller..."+session.getId());
+	}
+	
 	
 	@RequestMapping("/login")
 	public String login(HttpServletRequest req, HttpSession session) {
